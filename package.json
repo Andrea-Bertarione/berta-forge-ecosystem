@@ -1,0 +1,31 @@
+{
+  "name": "berta-forge-ecosystem",
+  "version": "1.0.0",
+  "description": "Ecosystem made to centralize development and management",
+  "type": "commonjs",
+  "main": "/src/server.ts",
+  "scripts": {
+    "dev": "tsc && node ./build/server.js dev",
+    "prod": "",
+    "test": "",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "author": "Berta",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "gts": "^6.0.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.7.5"
+  }
+}

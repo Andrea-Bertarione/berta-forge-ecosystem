@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    // Input & output folders
+    "rootDir": "src",
+    "outDir": "build",
+
+    // Target ESNext syntax but compile modules to CommonJS
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+
+    // Type safety
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Emit declarations & sourcemaps
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // Built-in libs & types
+    "lib": ["ESNext"],
+    "types": ["node"],
+
+    // Performance tweaks
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}

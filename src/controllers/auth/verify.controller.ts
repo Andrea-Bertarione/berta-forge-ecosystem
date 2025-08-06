@@ -1,14 +1,14 @@
-import { successResponse, errorResponse } from "../../interfaces/index.interface";
 import type { Request, Response } from "express";
-import { validateUser } from "../../services/auth.service";
+//import { verifyEmail } from "../../services/auth.service";
+import { successResponse, errorResponse } from '../../interfaces/index.interface';
 
 export default async (req: Request, res: Response) => {
     try {
-        const loginResult = await validateUser(req.body);
+        //const user = verifyEmail(req.body.token);
 
         const responseData: successResponse = {
-            message: "User succesfully logged in",
-            data: loginResult
+            data: {}, //pass user
+            message: "Email confirmed"
         }
 
         res.status(201).json(responseData);
@@ -19,4 +19,4 @@ export default async (req: Request, res: Response) => {
         }
         res.status(500).json(responseData);
     }
-} 
+};

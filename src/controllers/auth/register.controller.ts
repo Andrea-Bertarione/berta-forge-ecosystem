@@ -1,21 +1,23 @@
-import { registerSuccessResponse } from "../../interfaces/auth.interface";
+import { successResponse, errorResponse } from "../../interfaces/index.interface";
 import { registerUser } from "../../services/auth.service";
 
 import type { Request, Response } from "express";
 
-
 export default async (req: Request, res: Response) => {
     try {
-        await registerUser(req.body);
+        const registerResult = await registerUser(req.body);
 
-        const responseData: registerSuccessResponse = {
+        const responseData: successResponse = {
             message: "User succesfully registered, email confirmation sent",
-            data: { }
+            data: registerResult
         }
 
-        res.json(responseData);
+        res.status(201).json(responseData);
     }
-    catch (err) {
-
+    catch (error: unknown) {
+        const responseData: errorResponse = {
+            message: error instanceof Error ? error.message : "An unknown error occurred"
+        }
+        res.status(500).json(responseData);
     }
 } 

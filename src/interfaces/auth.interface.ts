@@ -1,10 +1,8 @@
-export interface registerUserData {
-    name: string,
+export interface loginUserData {
     email: string,
     password: string
 }
 
-export interface registerSuccessResponse {
-    message: string,
-    data: object | null
+export interface registerUserData extends loginUserData{
+    name: string,
 }

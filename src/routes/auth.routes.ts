@@ -17,7 +17,7 @@ const createUserSchema = Joi.object({
 
 const validateUserSchema = Joi.object({
     email: Joi.string().email().required(),
-    password: Joi.string().required
+    password: Joi.string().required()
 });
 
 const verifyTokenSchema = Joi.object({
@@ -26,9 +26,9 @@ const verifyTokenSchema = Joi.object({
 
 const authRouter: Router = createRouter();
 
-authRouter.post("/register", registerController, validateBody(createUserSchema));
-authRouter.post("/login", loginController, validateBody(validateUserSchema));
+authRouter.post("/register", validateBody(createUserSchema), registerController);
+authRouter.post("/login", validateBody(validateUserSchema), loginController);
 authRouter.post("/logout", logoutController);
-authRouter.post("/verify", verifyController, validateBody(verifyTokenSchema));
+authRouter.post("/verify", validateBody(verifyTokenSchema), verifyController);
 
 export default authRouter;

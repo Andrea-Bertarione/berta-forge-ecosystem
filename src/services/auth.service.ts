@@ -1,6 +1,14 @@
 import { database } from "../config/database.config";
 import { loginUserData, registerUserData } from "../interfaces/auth.interface";
 
+export const validateToken = async (token: string) => {
+    const { data: { user }, error } = await database.auth.getUser(token);
+    if (error || !user) {
+      throw new Error("Invalid or expired token");
+    }
+    return user;
+}
+
 export const registerUser = async (userData: registerUserData) => {
     const { data, error } = await database.auth.signUp({
         email: userData.email,
@@ -28,7 +36,7 @@ export const validateUser = async (userData: loginUserData) => {
 
     if (error) { throw new Error(`[Service.Auth.Login] database sign in error: ${error.message}`)}
 
-    return data.user;
+    return data;
 }
 
 export const logoutUser = async () => {

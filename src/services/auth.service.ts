@@ -39,6 +39,14 @@ export const validateUser = async (userData: loginUserData) => {
     return data;
 }
 
+export const refreshToken = async () => {
+    const { data, error } = await database.auth.refreshSession();
+
+    if (error) { throw new Error(`[Service.Auth.Refresh] database sign in error: ${error.message}`)}
+
+    return data;
+}
+
 export const logoutUser = async () => {
     const { error } = await database.auth.signOut();
 
